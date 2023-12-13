@@ -119,6 +119,66 @@ To migrate from MMSegmentation 0.x, please refer to [migration](docs/en/migratio
 ## Tutorial
 
 <details>
+<summary>Example of Config usage</summary>
+```
+  _base_ = [
+    '../_base_/models/upernet_beit.py', '../_base_/datasets/ade20k_640x640.py',
+    '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
+]
+
+# metainfo is a configuration that must be passed to the dataloader, otherwise it is invalid
+# palette is a display color for category at visualization
+# The palette length must be greater than or equal to the length of the classes
+METAINFO = dict(classes=('Road', 'Sidewalk', 'Construction', 'Fence', 'Pole',
+                'Traffic_Light', 'Traffic_sign', 'Nature', 'Sky','Person',
+                'Rider', 'Car', 'Background'), 
+                palette=[[128, 64, 128], [244, 35, 232], [70, 70, 70], [102, 102, 156], [190, 153, 153], 
+                [153, 153, 153], [250, 170, 30], [220, 220, 0], [107, 142, 35], [152, 251, 152], 
+                [70, 130, 180], [220, 20, 60], [0, 0, 0]])
+
+crop_size = (640, 640)
+data_preprocessor = dict(size=crop_size)
+model = dict(
+    data_preprocessor=data_preprocessor,
+    pretrained='pretrain/beit_base_patch16_224_pt22k_ft22k.pth',
+    test_cfg=dict(mode='slide', crop_size=(640, 640), stride=(426, 426)),
+    decode_head=dict(num_classes=13),
+    auxiliary_head=dict(num_classes=13))
+
+optim_wrapper = dict(
+    _delete_=True,
+    type='OptimWrapper',
+    optimizer=dict(
+        type='AdamW', lr=3e-5, betas=(0.9, 0.999), weight_decay=0.05),
+    constructor='LayerDecayOptimizerConstructor',
+    paramwise_cfg=dict(num_layers=12, layer_decay_rate=0.9))
+
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=1e-6, by_epoch=False, begin=0, end=1500),
+    dict(
+        type='PolyLR',
+        power=1.0,
+        begin=1500,
+        end=160000,
+        eta_min=0.0,
+        by_epoch=False,
+    )
+]
+
+# # mixed precision
+# fp16 = dict(loss_scale='dynamic')
+
+# By default, models are trained on 8 GPUs with 2 images per GPU
+train_dataloader = dict(batch_size=2)
+val_dataloader = dict(batch_size=1)
+test_dataloader = dict(batch_size=1)
+
+```
+
+</details>
+
+<details>
 <summary>Get Started</summary>
 
 - [MMSeg overview](docs/en/overview.md)
