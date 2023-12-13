@@ -25,7 +25,7 @@ To migrate from MMSegmentation 0.x, please refer to [migration](docs/en/migratio
 
 <details>
 <summary>Example of Config usage</summary>
-'''
+```
   _base_ = [
     '../_base_/models/upernet_beit.py', '../_base_/datasets/ade20k_640x640.py',
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
@@ -79,7 +79,7 @@ train_dataloader = dict(batch_size=2)
 val_dataloader = dict(batch_size=1)
 test_dataloader = dict(batch_size=1)
 
-'''
+```
 
 </details>
 
