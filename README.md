@@ -25,7 +25,10 @@ To migrate from MMSegmentation 0.x, please refer to [migration](docs/en/migratio
 
 <details>
 <summary>Example of Config usage</summary>
-```
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
 ```
 
 </details>
