@@ -24,7 +24,7 @@ To migrate from MMSegmentation 0.x, please refer to [migration](docs/en/migratio
 ## Tutorial
 
 <details>
-<summary>Example of Config usage</summary>
+<summary>Example of Config Usage</summary>
   
   ```ruby
   _base_ = [
