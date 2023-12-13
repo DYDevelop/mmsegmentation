@@ -1,7 +1,6 @@
 <div align="center">
   <img src="resources/mmseg-logo.png" width="600"/>
   <div>&nbsp;</div>
-  <div>&nbsp;</div>
 
 Documentation: <https://mmsegmentation.readthedocs.io/en/latest/>
 
