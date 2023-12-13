@@ -243,12 +243,6 @@ Please refer to [FAQ](docs/en/notes/faq.md) for frequently asked questions.
 
 We appreciate all contributions to improve MMSegmentation. Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
 
-## Acknowledgement
-
-MMSegmentation is an open source project that welcome any contribution and feedback.
-We wish that the toolbox and benchmark could serve the growing research
-community by providing a flexible as well as standardized toolkit to reimplement existing methods
-and develop their own new semantic segmentation methods.
 
 ## Citation
 
