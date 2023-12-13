@@ -4,7 +4,7 @@
 
 Documentation: <https://mmsegmentation.readthedocs.io/en/latest/>
 
-English | [简体中文](README_zh-CN.md)
+English
 
 </div>
 
